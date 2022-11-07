@@ -67,7 +67,7 @@ const trial = {
   pixi: pixi_flag,
   stimuli: [text_object, rect_object],
   choices: ['y', 'n'], // The participant can respond to the stimuli using the 'y' or 'n' key.
-  canvas_width: 1600,
+  //canvas_width: 1600,
   //canvas_height: 600,
 }
 
