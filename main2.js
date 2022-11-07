@@ -1,95 +1,74 @@
-var repo_site = "https://imaru.github.io/jqTemplate/";
- 
- /* create timeline */
- var timeline = [];
+const jsPsych = initJsPsych({
+  on_finish: function() {
+      jsPsych.data.displayData();
+  }
+})
+console.log(`jsPsych Version ${jsPsych.version()}`)
 
- /* preload images */
- var preload = {
-   type: 'preload',
-   images: [repo_site+'img/blue.png', repo_site+'img/orange.png']
- }
- timeline.push(preload);
+const pixi_flag = jsPsych.data.getURLVariable('pixi_flag') === '1' ? true : false;
 
- /* define welcome message trial */
- var welcome = {
-   type: "html-keyboard-response",
-   stimulus: "Welcome to the experiment. Press any key to begin."
- };
- timeline.push(welcome);
+const instruction = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: 'Click on the Start button.',
+  choices: ['Start'],
+  prompt: "This is a sample program for the jspsych-psychophysics plugin."
+}
 
- /* define instructions trial */
- var instructions = {
-   type: "html-keyboard-response",
-   stimulus: "<p>In this experiment, a circle will appear in the center " +
-     " of the screen.</p><p>If the circle is <strong>blue</strong>, " +
-     " press the letter F on the keyboard as fast as you can.</p> " +
-     " <p>If the circle is <strong>orange</strong>, press the letter J " +
-     " as fast as you can.</p> " +
-     " <div style='width: 700px;'>" +
-     " <div style='float: left;'><img src=" + repo_site + "'img/blue.png'></img>" +
-     " <p class='small'><strong>Press the F key</strong></p></div>" + 
-     " <div style='float: right;'><img src=" + repo_site + "'img/orange.png'></img> " +
-     " <p class='small'><strong>Press the J key</strong></p></div>" +
-     "</div>" +
-     " <p>Press any key to begin.</p> ",
-   post_trial_gap: 2000
- };
- timeline.push(instructions);
+let color = 0;
 
- /* test trials */
- var test_stimuli = [
-   { stimulus: repo_site+"img/blue.png",  correct_response: 'f'},
-   { stimulus: repo_site+"img/orange.png",  correct_response: 'j'}
- ];
+const text_object = {
+obj_type: 'text',
+startX: 0,
+startY: 100,
+origin_center: true,
+content: 'RGB = [0, 0, 0]',
+font: "22px 'Arial'",
+text_color: 'white',
+change_attr: function(stim){ // Change the content dynamically
+      const content = `RGB = [${color}, ${color}, ${color}]`;
+      if (pixi_flag) { // Using PixiJS
+          stim.pixi_obj.text = content
+      } else {
+          stim.content = content
+      }
+} 
+}
 
- var fixation = {
-   type: 'html-keyboard-response',
-   stimulus: '<div style="font-size:60px;">+</div>',
-   choices: jsPsych.NO_KEYS,
-   trial_duration: function(){
-     return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
-   },
-   data: {
-     task: 'fixation'
-   }
- }
+const rect_object = {
+  obj_type: 'rect', // means a rectangle
+  startX: 0, // location in the canvas
+  startY: 0,
+  origin_center: true,
+  width: 100, // of the rectangle
+  height: 100,
+  line_color: 'rgb(0,0,0)',
+  fill_color: 'rgb(0,0,0)',
+  line_width: 4,
+  change_attr: function(stim, times, frames){ // called by the requestAnimationFrame
+      const frequency = 0.05;
+      const sin_value = Math.sin(2 * Math.PI * frequency * times/1000) // The times are in terms of milliseconds
+      const normalized_value = sin_value/2 + 1/2; // from 0 to 1
+      color = Math.floor(normalized_value * 255) // An integer between 0 and 255
+      const color_info = `rgb(${color}, ${color}, ${color})`
 
- var test = {
-   type: "image-keyboard-response",
-   stimulus: jsPsych.timelineVariable('stimulus'),
-   choices: ['f', 'j'],
-   data: {
-     task: 'response',
-     correct_response: jsPsych.timelineVariable('correct_response')
-   },
-   on_finish: function(data){
-     data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response);
-   }
- }
+      if (pixi_flag) { // Using PixiJS
+          const color_num = jsPsych.getCurrentTrial().getColorNum(color_info)
+          stim.pixi_obj.beginFill(color_num, 1);
+          stim.pixi_obj.drawRect(-stim.width/2, -stim.height/2, stim.width, stim.height);
+          stim.pixi_obj.endFill();
+      } else {
+          stim.fill_color = color_info
+      }
+  }
+}
 
- var test_procedure = {
-   timeline: [fixation, test],
-   timeline_variables: test_stimuli,
-   repetitions: 5,
-   randomize_order: true
- }
- timeline.push(test_procedure);
+const trial = {
+  type: jsPsychPsychophysics,
+  pixi: pixi_flag,
+  stimuli: [text_object, rect_object],
+  choices: ['y', 'n'], // The participant can respond to the stimuli using the 'y' or 'n' key.
+  canvas_width: 600,
+  canvas_height: 600,
+}
 
- /* define debrief */
-
- var debrief_block = {
-   type: "html-keyboard-response",
-   stimulus: function() {
-
-     var trials = jsPsych.data.get().filter({task: 'response'});
-     var correct_trials = trials.filter({correct: true});
-     var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
-     var rt = Math.round(correct_trials.select('rt').mean());
-
-     return `<p>You responded correctly on ${accuracy}% of the trials.</p>
-       <p>Your average response time was ${rt}ms.</p>
-       <p>Press any key to complete the experiment. Thank you!</p>`;
-
-   }
- };
- timeline.push(debrief_block);
+jsPsych.run([instruction, trial])
