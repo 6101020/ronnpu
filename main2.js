@@ -62,10 +62,20 @@ const rect_object = {
   }
 }
 
+const line_object = {
+  obj_type: 'line',
+  x1: 300,
+  y1: 200,
+  x2: 200,
+  y2: 400,
+  line_width: 6,
+}
+
+
 const trial = {
   type: jsPsychPsychophysics,
   pixi: pixi_flag,
-  stimuli: [text_object, rect_object],
+  stimuli: [text_object, rect_object, line_object],
   choices: ['y', 'n'], // The participant can respond to the stimuli using the 'y' or 'n' key.
   //canvas_width: 1600,
   //canvas_height: 600,
