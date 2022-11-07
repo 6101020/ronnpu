@@ -9,7 +9,7 @@ Qualtrics.SurveyEngine.addOnload(function()
  
      var requiredResources = [
          task_github + "jspsych-psychophysics-3.4.0/jspsych-dist/dist/jspsych.js",
-         task_github + "jspsych-psychophysics-3.4.0/dist/plugin-html-button-response.js",
+         task_github + "jspsych-psychophysics-3.4.0/jspsych-dist/dist/plugin-html-button-response.js",
          task_github + "jspsych-psychophysics-3.4.0/jspsych-psychophysics.js",
          "https://pixijs.download/release/pixi.js",
          task_github + "main2.js"
