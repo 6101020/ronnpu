@@ -1,17 +1,24 @@
-const jsPsych = initJsPsych({
-  on_finish: function() {
-      jsPsych.data.displayData();
-  }
+
+    const jsPsych = initJsPsych({
+      on_finish: function() {
+          jsPsych.data.displayData();
+      }
   })
   console.log(`jsPsych Version ${jsPsych.version()}`)
 
   const pixi_flag = jsPsych.data.getURLVariable('pixi_flag') === '1' ? true : false;
 
   const instruction = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: 'Click on the Start button.',
-  choices: ['Start'],
-  prompt: "This is a sample program for the jspsych-psychophysics plugin."
+      type: jsPsychHtmlButtonResponse,
+      stimulus: 'スタートボタンを押すと始まります',
+      choices: ['Start'],
+  }
+
+  const cross_object = {
+      obj_type: 'cross',        
+      line_length: 50,
+      line_color: 'black', // You can use the HTML color name instead of the HEX color.
+      show_end_time: 1000,
   }
 
   const line_object = {
@@ -21,15 +28,15 @@ const jsPsych = initJsPsych({
   x2: window.innerWidth,
   y2: window.innerHeight,
   line_width: 2,
+  line_color: 'black',
+  show_start_time: 1000, 
   }
-
 
   const trial = {
-  type: jsPsychPsychophysics,
-  pixi: pixi_flag,
-  stimuli: [line_object],
-  choices: ['y', 'n'], // The participant can respond to the stimuli using the 'y' or 'n' key.
-  background_color: 'RGB = [255, 255, 255]',
+      type: jsPsychPsychophysics,
+      pixi: pixi_flag,
+      stimuli: [cross_object,line_object],
+      background_color: [255, 255, 255],
   }
 
-  jsPsych.run([trial])
+  jsPsych.run([instruction, trial])
