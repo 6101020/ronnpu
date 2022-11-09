@@ -145,13 +145,3 @@
     randomize_order: true
   }
   timeline.push(test_procedure);
-
-  /* define debrief */
-
-  /* start the experiment */
-  jsPsych.init({
-    timeline: timeline,
-    on_finish: function () {
-      jsPsych.data.displayData();
-    }
-  });
