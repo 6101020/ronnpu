@@ -23,39 +23,95 @@
   timeline.push(instructions);
 
   /* test trials */
-  function line(f) {
-    var fig = f.getContext('2d');
-    fig.beginPath();            // 新しいパスを作成
-    fig.lineWidth = 2;      // 線の太さ
-    //fig.strokeStyle = black;    // 線の色
-    fig.moveTo(0, 0);          // 線の開始座標
-    fig.lineTo(window.innerHeight, window.innerWidth);          // 線の終了座標
-    fig.stroke();               // 輪郭を描画
-  }
 
+  //左側が多いパターン
   function drawCirc_left(c) {
     var ctx = c.getContext('2d');
     ctx.beginPath();
-    ctx.arc(100, 75, 50, 0, 2 * Math.PI);
-    ctx.moveTo(0, 0);          // 線の開始座標
-    ctx.lineTo(window.innerWidth,window.innerHeight);          // 線の終了座標
+    ctx.moveTo(0, 0);
+    ctx.lineTo(window.innerWidth, window.innerHeight);  // 線の終了座標
     ctx.stroke();
+
+    var random = Math.floor(Math.random() * 9) + 12; //最大値20、最小値12　20-12+1=9
+    //左側
+    for (let i = 0; i < random; i++) {
+      ctx.beginPath();
+      var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
+      var randomy = Math.floor(Math.random() * (window.innerHeight - (randomx / window.innerWidth * window.innerHeight) + 1)) + randomx / window.innerWidth * window.innerHeight;
+      ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgb(255,0,0)";
+      ctx.fill();
+    }
+
+    //右側
+    for (let i = 0; i < 20 - random; i++) {
+      ctx.beginPath();
+      var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
+      var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) + 1)) + 0;
+      ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgb(255,0,0)";
+      ctx.fill();
+    }
   }
 
+  //右側が多いパターン
   function drawCirc_right(c) {
-    //line();
     var ctx = c.getContext('2d');
     ctx.beginPath();
-    ctx.arc(300, 75, 50, 0, 2 * Math.PI);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(window.innerWidth, window.innerHeight);  // 線の終了座標
     ctx.stroke();
+    var random = Math.floor(Math.random() * 9) + 12; //最大値20、最小値12　20-12+1=9
+    //右側
+    console.log(random);
+    for (let i = 0; i < random; i++) {
+      ctx.beginPath();
+      var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
+      var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) + 1)) + 0;
+      ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgb(255,0,0)";
+      ctx.fill();
+    }
+
+    //左側
+    for (let i = 0; i < 20 - random; i++) {
+      ctx.beginPath();
+      var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
+      var randomy = Math.floor(Math.random() * (window.innerHeight - (randomx / window.innerWidth * window.innerHeight) + 1)) + randomx / window.innerWidth * window.innerHeight;
+      ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgb(255,0,0)";
+      ctx.fill();
+    }
   }
 
+  //曖昧なパターン
   function drawCirc_ambiguous(c) {
-    //line();
     var ctx = c.getContext('2d');
     ctx.beginPath();
-    ctx.arc(500, 75, 50, 0, 2 * Math.PI);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(window.innerWidth, window.innerHeight);  // 線の終了座標
     ctx.stroke();
+    var random = Math.floor(Math.random() * 3) + 9; //最大値11、最小値9　11-9+1=3
+    //右側
+    console.log(random);
+    for (let i = 0; i < random; i++) {
+      ctx.beginPath();
+      var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
+      var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) + 1)) + 0;
+      ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgb(255,0,0)";
+      ctx.fill();
+    }
+
+    //左側
+    for (let i = 0; i < 20 - random; i++) {
+      ctx.beginPath();
+      var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
+      var randomy = Math.floor(Math.random() * (window.innerHeight - (randomx / window.innerWidth * window.innerHeight) + 1)) + randomx / window.innerWidth * window.innerHeight;
+      ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = "rgb(255,0,0)";
+      ctx.fill();
+    }
   }
 
   var test_stimuli = [
@@ -89,3 +145,13 @@
     randomize_order: true
   }
   timeline.push(test_procedure);
+
+  /* define debrief */
+
+  /* start the experiment */
+  jsPsych.init({
+    timeline: timeline,
+    on_finish: function () {
+      jsPsych.data.displayData();
+    }
+  });
