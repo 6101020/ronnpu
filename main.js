@@ -24,6 +24,7 @@
 
   /* test trials */
 
+
   function drawCirc_left(c) {
     var ctx = c.getContext('2d');
     ctx.beginPath();
