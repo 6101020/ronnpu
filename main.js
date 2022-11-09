@@ -1,95 +1,88 @@
-var repo_site = "https://6101020.github.io/ronnpu/";
- 
- /* create timeline */
- var timeline = [];
 
- /* preload images */
- var preload = {
-   type: 'preload',
-   images: [repo_site+'img/blue.png', repo_site+'img/orange.png']
- }
- timeline.push(preload);
+  /* create timeline */
+  var timeline = [];
 
- /* define welcome message trial */
- var welcome = {
-   type: "html-keyboard-response",
-   stimulus: "Welcome to the experiment. Press any key to begin."
- };
- timeline.push(welcome);
+  /* define welcome message trial */
+  var welcome = {
+    type: "html-keyboard-response",
+    stimulus: "実験にご協力いただきありがとうございます。何かキーを押してください"
+  };
+  timeline.push(welcome);
 
- /* define instructions trial */
- var instructions = {
-   type: "html-keyboard-response",
-   stimulus: "<p>In this experiment, a circle will appear in the center " +
-     " of the screen.</p><p>If the circle is <strong>blue</strong>, " +
-     " press the letter F on the keyboard as fast as you can.</p> " +
-     " <p>If the circle is <strong>orange</strong>, press the letter J " +
-     " as fast as you can.</p> " +
-     " <div style='width: 700px;'>" +
-     " <div style='float: left;'><img src=" + repo_site + "'img/blue.png'></img>" +
-     " <p class='small'><strong>Press the F key</strong></p></div>" + 
-     " <div style='float: right;'><img src=" + repo_site + "'img/orange.png'></img> " +
-     " <p class='small'><strong>Press the J key</strong></p></div>" +
-     "</div>" +
-     " <p>Press any key to begin.</p> ",
-   post_trial_gap: 2000
- };
- timeline.push(instructions);
+  /* define instructions trial */
+  var instructions = {
+    type: "html-keyboard-response",
+    stimulus: `
+        <p>これからスクリーン上に斜線と赤色の円が表示されます</p><p>円の数が斜線よりも左側に多いか右側に多いか判断してください</p>
+        <p>円が左側に多いと思ったときはFキーを押してください</p>
+        <p>円が右側に多いと思ったときはJキーを押しください</p>
+        <p>何かキーを入力すると始まります</p>
+      `,
+    post_trial_gap: 2000
+  };
+  timeline.push(instructions);
 
- /* test trials */
- var test_stimuli = [
-   { stimulus: repo_site+"img/blue.png",  correct_response: 'f'},
-   { stimulus: repo_site+"img/orange.png",  correct_response: 'j'}
- ];
+  /* test trials */
 
- var fixation = {
-   type: 'html-keyboard-response',
-   stimulus: '<div style="font-size:60px;">+</div>',
-   choices: jsPsych.NO_KEYS,
-   trial_duration: function(){
-     return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
-   },
-   data: {
-     task: 'fixation'
-   }
- }
+  function drawCirc_left(c) {
+    var ctx = c.getContext('2d');
+    ctx.beginPath();
+    ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+  }
 
- var test = {
-   type: "image-keyboard-response",
-   stimulus: jsPsych.timelineVariable('stimulus'),
-   choices: ['f', 'j'],
-   data: {
-     task: 'response',
-     correct_response: jsPsych.timelineVariable('correct_response')
-   },
-   on_finish: function(data){
-     data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response);
-   }
- }
+  function drawCirc_right(c) {
+    var ctx = c.getContext('2d');
+    ctx.beginPath();
+    ctx.arc(300, 75, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+  }
 
- var test_procedure = {
-   timeline: [fixation, test],
-   timeline_variables: test_stimuli,
-   repetitions: 5,
-   randomize_order: true
- }
- timeline.push(test_procedure);
+  function drawCirc_ambiguous(c) {
+    var ctx = c.getContext('2d');
+    ctx.beginPath();
+    ctx.arc(500, 75, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+  }
 
- /* define debrief */
+  var test_stimuli = [
+    { stimulus: drawCirc_left, correct_response: 'f' },
+    { stimulus: drawCirc_right, correct_response: 'j' },
+    { stimulus: drawCirc_ambiguous, correct_response: 'f' & 'j' }
+  ];
 
- var debrief_block = {
-   type: "html-keyboard-response",
-   stimulus: function() {
+  var fixation = {
+    type: 'html-keyboard-response',
+    stimulus: '<div style="font-size:60px;">+</div>',
+    choices: jsPsych.NO_KEYS,
+    trial_duration: 1000,
+    data: {
+      task: 'fixation'
+    }
+  }
 
-     var trials = jsPsych.data.get().filter({task: 'response'});
-     var correct_trials = trials.filter({correct: true});
-     var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
-     var rt = Math.round(correct_trials.select('rt').mean());
+  var test = {
+    type: 'canvas-keyboard-response',
+    stimulus: jsPsych.timelineVariable('stimulus'),
+    choices:  ['f', 'j'],
+    canvas_size: [window.innerHeight, window.innerWidth],
+    data: { shape: 'circle', radius: 50 }
+  }
 
-     return `<p>You responded correctly on ${accuracy}% of the trials.</p>
-       <p>Your average response time was ${rt}ms.</p>
-       <p>Press any key to complete the experiment. Thank you!</p>`;
+  var test_procedure = {
+    timeline: [fixation, test],
+    timeline_variables: test_stimuli,
+    repetitions: 1,
+    randomize_order: true
+  }
+  timeline.push(test_procedure);
 
-   }
- };
- timeline.push(debrief_block);
+  /* define debrief */
+
+  /* start the experiment */
+  jsPsych.init({
+    timeline: timeline,
+    on_finish: function () {
+      jsPsych.data.displayData();
+    }
+  });
