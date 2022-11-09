@@ -11,16 +11,15 @@
   /* define instructions trial */
   var instructions = {
     type: "html-keyboard-response",
-    stimulus: `<p>a</p>
-
+    stimulus: `<p>これからスクリーン上に斜線と赤色の円が表示されます</p><p>円の数が斜線よりも左側に多いか右側に多いか判断してください</p>
+    <p>円が左側に多いと思ったときはFキーを押してください</p>
+    <p>円が右側に多いと思ったときはJキーを押しください</p>
+    <p>何かキーを入力すると始まります</p>
       `,
     post_trial_gap: 2000
   };
   timeline.push(instructions);
- /* <p>これからスクリーン上に斜線と赤色の円が表示されます</p><p>円の数が斜線よりも左側に多いか右側に多いか判断してください</p>
-  <p>円が左側に多いと思ったときはFキーを押してください</p>
-  <p>円が右側に多いと思ったときはJキーを押しください</p>
-  <p>何かキーを入力すると始まります</p>
+
 
 
   /* test trials */
@@ -77,13 +76,3 @@
     randomize_order: true
   }
   timeline.push(test_procedure);
-
-  /* define debrief */
-
-  /* start the experiment */
-  jsPsych.init({
-    timeline: timeline,
-    on_finish: function () {
-      jsPsych.data.displayData();
-    }
-  });
