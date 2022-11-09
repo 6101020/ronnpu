@@ -65,7 +65,7 @@
     type: 'canvas-keyboard-response',
     stimulus: jsPsych.timelineVariable('stimulus'),
     choices:  ['f', 'j'],
-    //canvas_size: [window.innerHeight, window.innerWidth],
+    canvas_size: [window.innerHeight, window.innerWidth],
     data: { shape: 'circle', radius: 50 }
   }
 
