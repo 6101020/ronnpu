@@ -38,7 +38,7 @@
     ctx.beginPath();
     ctx.arc(100, 75, 50, 0, 2 * Math.PI);
     ctx.moveTo(0, 0);          // 線の開始座標
-    ctx.lineTo(window.outerWidth, window.outerHeight);          // 線の終了座標
+    ctx.lineTo(window.innerWidth,window.innerHeight);          // 線の終了座標
     ctx.stroke();
   }
 
