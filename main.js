@@ -114,11 +114,12 @@
     }
   }
 
-  var test_stimuli = [
-    { stimulus: drawCirc_left, correct_response: 'f' },
-    { stimulus: drawCirc_right, correct_response: 'j' },
-    { stimulus: drawCirc_ambiguous, correct_response: 'f' & 'j' }
-  ];
+    var test_stimuli = [
+      { stimulus: drawCirc_left, correct_response: 'f' },
+      { stimulus: drawCirc_right, correct_response: 'j' },
+      { stimulus: drawCirc_ambiguous, correct_response: 'f' & 'j' }
+    ];
+
 
   var fixation = {
     type: 'html-keyboard-response',
@@ -139,9 +140,31 @@
   }
 
   var test_procedure = {
-    timeline: [fixation, test],
     timeline_variables: test_stimuli,
+    timeline: [fixation, test],
+    sample: {
+      type: 'custom',
+      fn: function (x) { return x.reverse(); }
+    },
     repetitions: 1,
-    randomize_order: true
-  }
+  };
+
   timeline.push(test_procedure);
+
+  /* define debrief */
+  var debrief_block = {
+   type: "html-keyboard-response",
+   stimulus: function() {
+
+     var trials = jsPsych.data.get().filter({task: 'response'});
+     var correct_trials = trials.filter({correct: true});
+     var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
+     var rt = Math.round(correct_trials.select('rt').mean());
+
+     return `<p>You responded correctly on ${accuracy}% of the trials.</p>
+       <p>Your average response time was ${rt}ms.</p>
+       <p>Press any key to complete the experiment. Thank you!</p>`;
+
+   }
+ };
+ timeline.push(debrief_block);
