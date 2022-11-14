@@ -13,7 +13,6 @@
 
 <body></body>
 <script>
-
     //試行順番を決定
     var array = [];
     //左側試行数
@@ -174,7 +173,7 @@
         },
         choices: ['f', 'j'],
         canvas_size: [window.innerHeight, window.innerWidth],
-        data: { shape: 'circle', pattern: 'left' }
+        data: {pattern: 'left' }
     };
 
     /*右のパターン*/
@@ -185,7 +184,7 @@
         },
         choices: ['f', 'j'],
         canvas_size: [window.innerHeight, window.innerWidth],
-        data: { shape: 'circle',  pattern: 'right' }
+        data: {pattern: 'right' }
     };
 
     /*曖昧なパターン*/
@@ -196,7 +195,7 @@
         },
         choices: ['f', 'j'],
         canvas_size: [window.innerHeight, window.innerWidth],
-        data: { shape: 'circle',  pattern: 'ambiguous' }
+        data: {pattern: 'ambiguous' }
     };
 
     var test_left = {
@@ -221,7 +220,6 @@
             timeline.push(test_ambiguous);
         }
     }
-
     /*
     var test_procedure = {
       timeline: [fixation, left_pattern],
