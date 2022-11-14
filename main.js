@@ -139,6 +139,14 @@
     data: { shape: 'circle', radius: 50 }
   }
 
+  /*data: {
+    task: 'response',
+    correct_response: jsPsych.timelineVariable('correct_response')
+  },
+  on_finish: function(data){
+    data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response);
+  }*/
+
   var test_procedure = {
     timeline_variables: test_stimuli,
     timeline: [fixation, test],
