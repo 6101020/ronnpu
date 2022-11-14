@@ -158,7 +158,7 @@
         },
         choices: ['f', 'j'],
         canvas_size: [window.innerHeight, window.innerWidth],
-        data: { shape: 'circle', pattern: 'left' }
+        data: {pattern: 'left' }
     };
 
     /*右のパターン*/
@@ -169,7 +169,7 @@
         },
         choices: ['f', 'j'],
         canvas_size: [window.innerHeight, window.innerWidth],
-        data: { shape: 'circle',  pattern: 'right' }
+        data: {pattern: 'right' }
     };
 
     /*曖昧なパターン*/
@@ -180,7 +180,7 @@
         },
         choices: ['f', 'j'],
         canvas_size: [window.innerHeight, window.innerWidth],
-        data: { shape: 'circle',  pattern: 'ambiguous' }
+        data: {pattern: 'ambiguous' }
     };
 
     var test_left = {
@@ -196,7 +196,7 @@
     }
 
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 200; i++) {
         if (array[i] == 'a') {
             timeline.push(test_left);
         } else if (array[i] == 'b') {
