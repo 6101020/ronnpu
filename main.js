@@ -206,18 +206,3 @@
             timeline.push(test_ambiguous);
         }
     }
-    /*
-    var test_procedure = {
-      timeline: [fixation, left_pattern],
-    };
-    timeline.push(test_procedure);
-    */
-
-
-    /* start the experiment */
-    jsPsych.init({
-        timeline: timeline,
-        on_finish: function () {
-            jsPsych.data.displayData();
-        }
-    });
