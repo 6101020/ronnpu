@@ -30,6 +30,7 @@
         array.push('c');
     }
 
+    console.log(array);
 
     function shuffle(array) {
         for (let i = array.length - 1; i >= 0; i--) {
@@ -41,7 +42,7 @@
     }
 
     array = shuffle(array);
-
+    console.log(array);
 
     /* create timeline */
     var timeline = [];
@@ -211,7 +212,7 @@
     }
 
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 200; i++) {
         if (array[i] == 'a') {
             timeline.push(test_left);
         } else if (array[i] == 'b') {
