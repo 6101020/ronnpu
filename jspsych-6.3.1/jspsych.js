@@ -1647,13 +1647,13 @@ jsPsych.data = (function() {
 
     var progress = jsPsych.progress();
     var trial = jsPsych.currentTrial();
-
+   
     //var trial_opt_data = typeof trial.data == 'function' ? trial.data() : trial.data;
 
     var default_data = {
       //'trial_type': trial.type,
-      'trial_index': progress.current_trial_global,
-      'time_elapsed': jsPsych.totalTime(),
+      'ti': progress.current_trial_global,
+      //'time_elapsed': jsPsych.totalTime(),
       //'internal_node_id': jsPsych.currentTimelineNodeID()
     };
 
