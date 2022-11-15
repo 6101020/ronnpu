@@ -197,7 +197,7 @@
     }
 
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 200; i++) {
         if (array[i] == 'a') {
             timeline.push(test_left);
         } else if (array[i] == 'b') {

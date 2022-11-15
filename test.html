@@ -131,6 +131,8 @@
     //曖昧なパターン
     function drawCirc_ambiguous(canvas) {
         var ctx = canvas.getContext('2d');
+
+        //斜線
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.lineTo(window.innerWidth, window.innerHeight);  // 線の終了座標
@@ -173,7 +175,7 @@
         },
         choices: ['f', 'j'],
         canvas_size: [window.innerHeight, window.innerWidth],
-        data: {pattern: 'left' }
+        data: { pattern: 'left' }
     };
 
     /*右のパターン*/
@@ -184,7 +186,7 @@
         },
         choices: ['f', 'j'],
         canvas_size: [window.innerHeight, window.innerWidth],
-        data: {pattern: 'right' }
+        data: { pattern: 'right' }
     };
 
     /*曖昧なパターン*/
@@ -195,7 +197,7 @@
         },
         choices: ['f', 'j'],
         canvas_size: [window.innerHeight, window.innerWidth],
-        data: {pattern: 'ambiguous' }
+        data: { pattern: 'ambiguous' }
     };
 
     var test_left = {

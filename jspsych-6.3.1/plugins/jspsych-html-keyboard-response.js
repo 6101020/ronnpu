@@ -90,7 +90,7 @@ jsPsych.plugins["html-keyboard-response"] = (function() {
       // gather the data to store for the trial
       var trial_data = {
         rt: response.rt,
-        stimulus: trial.stimulus,
+        //stimulus: trial.stimulus,
         response: response.key
       };
 
