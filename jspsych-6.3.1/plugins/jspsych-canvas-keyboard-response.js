@@ -79,7 +79,7 @@ jsPsych.plugins["canvas-keyboard-response"] = (function () {
     trial.stimulus(c)
     // store response
     var response = {
-      rt: null,
+      //rt: null,
       key: null
     };
 

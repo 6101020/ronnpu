@@ -1656,7 +1656,7 @@ jsPsych.data = (function() {
       //'time_elapsed': jsPsych.totalTime(),
       //'internal_node_id': jsPsych.currentTimelineNodeID()
     };
-
+  
     var ext_data_object = Object.assign({}, data_object, trial.data, default_data, dataProperties);
 
     allData.push(ext_data_object);

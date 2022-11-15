@@ -72,7 +72,7 @@ jsPsych.plugins["html-keyboard-response"] = (function() {
 
     // store response
     var response = {
-      rt: null,
+      //rt: null,
       key: null
     };
 

@@ -93,3 +93,7 @@ var repo_site = "https://imaru.github.io/jqTemplate/";
    }
  };
  timeline.push(debrief_block);
+
+ <script src="jspsych-6.3.1/plugins/jspsych-image-keyboard-response.js"></script>
+<script src="jspsych-6.3.1/plugins/jspsych-canvas-keyboard-response.js"></script>
+    
