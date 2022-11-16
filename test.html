@@ -75,13 +75,12 @@
         ctx.moveTo(0, 0);
         ctx.lineTo(window.innerWidth, window.innerHeight);  // 線の終了座標
         ctx.stroke();
-
         var random = Math.floor(Math.random() * 9) + 12; //最大値20、最小値12　20-12+1=9
         //左側
         for (let i = 0; i < random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
-            var randomy = Math.floor(Math.random() * (window.innerHeight - (randomx / window.innerWidth * window.innerHeight) + 1)) + randomx / window.innerWidth * window.innerHeight;
+            var randomx = Math.floor(Math.random() * (window.innerWidth - 39)) + 20;
+            var randomy = Math.floor(Math.random() * (window.innerHeight - 5 - (randomx / window.innerWidth * window.innerHeight + 5) + 1)) + randomx / window.innerWidth * window.innerHeight + 5;
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();
@@ -90,8 +89,8 @@
         //右側
         for (let i = 0; i < 20 - random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
-            var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) + 1)) + 0;
+            var randomx = Math.floor(Math.random() * (window.innerWidth - 39)) + 20;
+            var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) - 9)) + 5;
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();
@@ -107,11 +106,10 @@
         ctx.stroke();
         var random = Math.floor(Math.random() * 9) + 12; //最大値20、最小値12　20-12+1=9
         //右側
-        console.log(random);
         for (let i = 0; i < random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
-            var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) + 1)) + 0;
+            var randomx = Math.floor(Math.random() * (window.innerWidth - 39)) + 20;
+            var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) - 9)) + 5;
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();
@@ -120,8 +118,8 @@
         //左側
         for (let i = 0; i < 20 - random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
-            var randomy = Math.floor(Math.random() * (window.innerHeight - (randomx / window.innerWidth * window.innerHeight) + 1)) + randomx / window.innerWidth * window.innerHeight;
+            var randomx = Math.floor(Math.random() * (window.innerWidth - 39)) + 20;
+            var randomy = Math.floor(Math.random() * (window.innerHeight - 5 - (randomx / window.innerWidth * window.innerHeight + 5) + 1)) + randomx / window.innerWidth * window.innerHeight + 5;
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();
@@ -138,12 +136,12 @@
         ctx.lineTo(window.innerWidth, window.innerHeight);  // 線の終了座標
         ctx.stroke();
         var random = Math.floor(Math.random() * 3) + 9; //最大値11、最小値9　11-9+1=3
-        //右側
         console.log(random);
+        //右側
         for (let i = 0; i < random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
-            var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) + 1)) + 0;
+            var randomx = Math.floor(Math.random() * (window.innerWidth - 39)) + 20;
+            var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) - 9)) + 5;
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();
@@ -152,8 +150,8 @@
         //左側
         for (let i = 0; i < 20 - random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
-            var randomy = Math.floor(Math.random() * (window.innerHeight - (randomx / window.innerWidth * window.innerHeight) + 1)) + randomx / window.innerWidth * window.innerHeight;
+            var randomx = Math.floor(Math.random() * (window.innerWidth - 39)) + 20; //width - 20 -20 + 1
+            var randomy = Math.floor(Math.random() * (window.innerHeight - 5 - (randomx / window.innerWidth * window.innerHeight + 5) + 1)) + randomx / window.innerWidth * window.innerHeight + 5;
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();
