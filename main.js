@@ -143,6 +143,14 @@ function drawCirc_ambiguous(canvas) {
         ctx.fillStyle = "rgb(255,0,0)";
         ctx.fill();
     }
+    ctx.beginPath();
+    ctx.arc(0, 0, 10, 0, 2 * Math.PI);
+    ctx.fillStyle = "rgb(0,0,0)";
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(window.innerWidth, window.innerHeight, 10, 0, 2 * Math.PI);
+    ctx.fillStyle = "rgb(0,0,0)";
+    ctx.fill();
 }
 
 var fixation = {
