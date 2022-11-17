@@ -35,7 +35,7 @@ var timeline = [];
 /* define welcome message trial */
 var welcome = {
     type: "html-keyboard-response",
-    stimulus: "実験にご協力いただきありがとうございます。キーボードのキーを押すと始まります"
+    stimulus: "キーボードのキーを押すと始まります"
 };
 timeline.push(welcome);
 
