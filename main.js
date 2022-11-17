@@ -1,4 +1,3 @@
-
 //試行順番を決定
 var array = [];
 //左側試行数
@@ -36,11 +35,11 @@ var timeline = [];
 /* define welcome message trial */
 var welcome = {
     type: "html-keyboard-response",
-    stimulus: "実験にご協力いただきありがとうございます。何かキーを押してください"
+    stimulus: "実験にご協力いただきありがとうございます。キーボードのキーを押すと始まります"
 };
 timeline.push(welcome);
 
-/* define instructions trial */
+/* define instructions trial 
 var instructions = {
     type: "html-keyboard-response",
     stimulus: `
@@ -51,7 +50,7 @@ var instructions = {
       `,
     post_trial_gap: 2000
 };
-timeline.push(instructions);
+timeline.push(instructions);*/
 
 /* test trials */
 
