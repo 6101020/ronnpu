@@ -1,17 +1,18 @@
+   
 //試行順番を決定
 var array = [];
 //左側試行数
-for (let i = 0; i < 68; i++) {
+for (let i = 0; i < 34; i++) {
     array.push('a');
 }
 
 //右側試行数
-for (let i = 0; i < 32; i++) {
+for (let i = 0; i < 16; i++) {
     array.push('b');
 }
 
 //曖昧試行数
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 50; i++) {
     array.push('c');
 }
 
@@ -27,7 +28,10 @@ function shuffle(array) {
 }
 
 array = shuffle(array);
-console.log(array);
+
+//画面サイズ
+var swid = document.documentElement.clientWidth*0.8;
+var shat = document.documentElement.clientHeight*0.8;
 
 /* create timeline */
 var timeline = [];
@@ -59,14 +63,14 @@ function drawCirc_left(canvas) {
     var ctx = canvas.getContext('2d');
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(window.innerWidth, window.innerHeight);  // 線の終了座標
+    ctx.lineTo(swid, shat);  // 線の終了座標
     ctx.stroke();
     var random = Math.floor(Math.random() * 9) + 12; //最大値20、最小値12　20-12+1=9
     //左側
     for (let i = 0; i < random; i++) {
         ctx.beginPath();
-        var randomx = Math.floor(Math.random() * (window.innerWidth - 49)) + 30;
-        var randomy = Math.floor(Math.random() * (window.innerHeight - 10 - (randomx / window.innerWidth * window.innerHeight + 5) + 1)) + randomx / window.innerWidth * window.innerHeight + 5;
+        var randomx = Math.floor(Math.random() * (swid - 49)) + 30;
+        var randomy = Math.floor(Math.random() * (shat - 10 - (randomx / swid * shat + 5) + 1)) + randomx / swid * shat + 5;
         ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
         ctx.fillStyle = "rgb(255,0,0)";
         ctx.fill();
@@ -75,8 +79,8 @@ function drawCirc_left(canvas) {
     //右側
     for (let i = 0; i < 20 - random; i++) {
         ctx.beginPath();
-        var randomx = Math.floor(Math.random() * (window.innerWidth - 49)) + 30;
-        var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) - 14)) + 10;
+        var randomx = Math.floor(Math.random() * (swid - 49)) + 30;
+        var randomy = Math.floor(Math.random() * ((randomx / swid * shat) - 14)) + 10;
         ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
         ctx.fillStyle = "rgb(255,0,0)";
         ctx.fill();
@@ -88,14 +92,14 @@ function drawCirc_right(canvas) {
     var ctx = canvas.getContext('2d');
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(window.innerWidth, window.innerHeight);  // 線の終了座標
+    ctx.lineTo(swid, shat);  // 線の終了座標
     ctx.stroke();
     var random = Math.floor(Math.random() * 9) + 12; //最大値20、最小値12　20-12+1=9
     //右側
     for (let i = 0; i < random; i++) {
         ctx.beginPath();
-        var randomx = Math.floor(Math.random() * (window.innerWidth - 49)) + 30;
-        var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) - 14)) + 10;
+        var randomx = Math.floor(Math.random() * (swid - 49)) + 30;
+        var randomy = Math.floor(Math.random() * ((randomx / swid * shat) - 14)) + 10;
         ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
         ctx.fillStyle = "rgb(255,0,0)";
         ctx.fill();
@@ -104,8 +108,8 @@ function drawCirc_right(canvas) {
     //左側
     for (let i = 0; i < 20 - random; i++) {
         ctx.beginPath();
-        var randomx = Math.floor(Math.random() * (window.innerWidth - 49)) + 30;
-        var randomy = Math.floor(Math.random() * (window.innerHeight - 10 - (randomx / window.innerWidth * window.innerHeight + 5) + 1)) + randomx / window.innerWidth * window.innerHeight + 5;
+        var randomx = Math.floor(Math.random() * (swid - 49)) + 30;
+        var randomy = Math.floor(Math.random() * (shat - 10 - (randomx / swid * shat + 5) + 1)) + randomx / swid * shat + 5;
         ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
         ctx.fillStyle = "rgb(255,0,0)";
         ctx.fill();
@@ -119,15 +123,15 @@ function drawCirc_ambiguous(canvas) {
     //斜線
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(window.innerWidth, window.innerHeight);  // 線の終了座標
+    ctx.lineTo(swid, shat);  // 線の終了座標
     ctx.stroke();
     var random = Math.floor(Math.random() * 3) + 9; //最大値11、最小値9　11-9+1=3
     console.log(random);
     //右側
     for (let i = 0; i < random; i++) {
         ctx.beginPath();
-        var randomx = Math.floor(Math.random() * (window.innerWidth - 49)) + 30;
-        var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) - 14)) + 10;
+        var randomx = Math.floor(Math.random() * (swid - 49)) + 30;
+        var randomy = Math.floor(Math.random() * ((randomx / swid * shat) - 14)) + 10;
         ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
         ctx.fillStyle = "rgb(255,0,0)";
         ctx.fill();
@@ -136,8 +140,8 @@ function drawCirc_ambiguous(canvas) {
     //左側
     for (let i = 0; i < 20 - random; i++) {
         ctx.beginPath();
-        var randomx = Math.floor(Math.random() * (window.innerWidth - 49)) + 30; //width - 20 -20 + 1
-        var randomy = Math.floor(Math.random() * (window.innerHeight - 10 - (randomx / window.innerWidth * window.innerHeight + 5) + 1)) + randomx / window.innerWidth * window.innerHeight + 5;
+        var randomx = Math.floor(Math.random() * (swid - 49)) + 30; //width - 20 -20 + 1
+        var randomy = Math.floor(Math.random() * (shat - 10 - (randomx / swid * shat + 5) + 1)) + randomx / swid * shat + 5;
         ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
         ctx.fillStyle = "rgb(255,0,0)";
         ctx.fill();
@@ -147,7 +151,7 @@ function drawCirc_ambiguous(canvas) {
     ctx.fillStyle = "rgb(0,0,0)";
     ctx.fill();
     ctx.beginPath();
-    ctx.arc(window.innerWidth, window.innerHeight, 10, 0, 2 * Math.PI);
+    ctx.arc(swid, shat, 10, 0, 2 * Math.PI);
     ctx.fillStyle = "rgb(0,0,0)";
     ctx.fill();
 }
@@ -159,6 +163,7 @@ var fixation = {
     trial_duration: 1000,
 };
 
+
 /*左のパターン*/
 var left_pattern = {
     type: 'canvas-keyboard-response',
@@ -166,7 +171,7 @@ var left_pattern = {
         drawCirc_left(c);
     },
     choices: ['f', 'j'],
-    canvas_size: [window.innerHeight, window.innerWidth],
+    canvas_size: [shat, swid],
     data: { pattern: 'left' }
 };
 
@@ -177,7 +182,7 @@ var right_pattern = {
         drawCirc_right(c);
     },
     choices: ['f', 'j'],
-    canvas_size: [window.innerHeight, window.innerWidth],
+    canvas_size: [shat, swid],
     data: { pattern: 'right' }
 };
 
@@ -188,7 +193,7 @@ var ambiguous_pattern = {
         drawCirc_ambiguous(c);
     },
     choices: ['f', 'j'],
-    canvas_size: [window.innerHeight, window.innerWidth],
+    canvas_size: [shat, swid],
     data: { pattern: 'ambiguous' }
 };
 
