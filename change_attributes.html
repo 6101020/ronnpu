@@ -44,7 +44,7 @@
     var ctx = c.getContext('2d');
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(window.innerWidth, window.innerHeight);  // 線の終了座標
+    ctx.lineTo(window.innerWidth, shat);  // 線の終了座標
     ctx.stroke();
 
     var random = Math.floor(Math.random() * 9) + 12; //最大値20、最小値12　20-12+1=9
@@ -52,7 +52,7 @@
     for (let i = 0; i < random; i++) {
       ctx.beginPath();
       var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
-      var randomy = Math.floor(Math.random() * (window.innerHeight - (randomx / window.innerWidth * window.innerHeight) + 1)) + randomx / window.innerWidth * window.innerHeight;
+      var randomy = Math.floor(Math.random() * (shat - (randomx / window.innerWidth * shat) + 1)) + randomx / window.innerWidth * shat;
       ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
       ctx.fillStyle = "rgb(255,0,0)";
       ctx.fill();
@@ -62,7 +62,7 @@
     for (let i = 0; i < 20 - random; i++) {
       ctx.beginPath();
       var randomx = Math.floor(Math.random() * (window.innerWidth + 1)) + 0;
-      var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * window.innerHeight) + 1)) + 0;
+      var randomy = Math.floor(Math.random() * ((randomx / window.innerWidth * shat) + 1)) + 0;
       ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
       ctx.fillStyle = "rgb(255,0,0)";
       ctx.fill();
@@ -74,7 +74,7 @@
     var ctx = c.getContext('2d');
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(window.innerWidth, window.innerHeight);  // 線の終了座標
+    ctx.lineTo(window.innerWidth, shat);  // 線の終了座標
     ctx.stroke();
     var random = Math.floor(Math.random() * 9) + 12; //最大値20、最小値12　20-12+1=9
     //右側
