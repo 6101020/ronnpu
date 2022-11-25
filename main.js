@@ -30,8 +30,8 @@
     array = shuffle(array);
 
     //画面サイズ
-    var swid = document.documentElement.clientWidth * 0.8;
-    var shat = document.documentElement.clientHeight * 0.8;
+    var swid = document.documentElement.clientWidth * 0.9;
+    var shat = document.documentElement.clientHeight * 0.9;
 
     /* create timeline */
     var timeline = [];
@@ -138,7 +138,7 @@
         ctx.lineTo(swid, shat);  // 線の終了座標
         ctx.stroke();
 
-        beginPath();
+        ctx.beginPath();
         ctx.rect(0, 0, swid, shat);
         ctx.lineWidth = 4;
         ctx.stroke();
