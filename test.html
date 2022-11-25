@@ -92,6 +92,12 @@
         ctx.lineWidth = 4;
         ctx.stroke();
 
+        ctx.font = 'normal 16pt "メイリオ"'
+        ctx.fillText('左側が多い', sax-110, shat/2)
+        ctx.fillText('Fキー', sax-110, shat/2+20)
+        ctx.fillText('右側が多い', d_swid+5, shat/2)
+        ctx.fillText('Jキー', d_swid+5, shat/2+20)
+
         var random = Math.floor(Math.random() * 9) + 12; //最大値20、最小値12　20-12+1=9
         //左側
         for (let i = 0; i < random; i++) {
@@ -126,6 +132,12 @@
         ctx.rect(sax, say, d_swid-sax, d_shat-say);
         ctx.lineWidth = 4;
         ctx.stroke();
+
+        ctx.font = 'normal 16pt "メイリオ"'
+        ctx.fillText('左側が多い', sax-110, shat/2)
+        ctx.fillText('Fキー', sax-110, shat/2+20)
+        ctx.fillText('右側が多い', d_swid+5, shat/2)
+        ctx.fillText('Jキー', d_swid+5, shat/2+20)
 
         var random = Math.floor(Math.random() * 9) + 12; //最大値20、最小値12　20-12+1=9
         //右側
@@ -167,6 +179,8 @@
         ctx.font = 'normal 16pt "メイリオ"'
         ctx.fillText('左側が多い', sax-110, shat/2)
         ctx.fillText('Fキー', sax-110, shat/2+20)
+        ctx.fillText('右側が多い', d_swid+5, shat/2)
+        ctx.fillText('Jキー', d_swid+5, shat/2+20)
 
         var random = Math.floor(Math.random() * 3) + 9; //最大値11、最小値9　11-9+1=3
        
