@@ -16,8 +16,6 @@
         array.push('c');
     }
 
-    console.log(array);
-
     function shuffle(array) {
         for (let i = array.length - 1; i >= 0; i--) {
             let rand = Math.floor(Math.random() * (i + 1));
@@ -32,6 +30,15 @@
     //画面サイズ
     var swid = document.documentElement.clientWidth * 0.9;
     var shat = document.documentElement.clientHeight * 0.9;
+
+    //ドットを描く範囲
+    var d_swid = document.documentElement.clientWidth * 0.8;
+    var d_shat = document.documentElement.clientHeight * 0.8;
+
+
+    //画面サイズ-ドット範囲
+    var sax = swid -d_swid;
+    var say = shat -d_shat;
 
     /* create timeline */
     var timeline = [];
@@ -62,12 +69,12 @@
     function drawCirc_left(canvas) {
         var ctx = canvas.getContext('2d');
         ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(swid, shat);  // 線の終了座標
+        ctx.moveTo(sax, say);
+        ctx.lineTo(d_swid, d_shat);  // 線の終了座標
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.rect(0, 0, swid, shat);
+        ctx.rect(sax, say, d_swid-sax, d_shat-say);
         ctx.lineWidth = 4;
         ctx.stroke();
 
@@ -75,8 +82,8 @@
         //左側
         for (let i = 0; i < random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (swid - 49)) + 30;
-            var randomy = Math.floor(Math.random() * (shat - 10 - (randomx / swid * shat + 5) + 1)) + randomx / swid * shat + 5;
+            var randomx = Math.floor(Math.random() * (d_swid - (2*sax) -19)) + sax+10; //width - 20 -20 + 1
+            var randomy = Math.floor(Math.random() * (d_shat - say - (randomx / (d_swid-sax) * (d_shat-say)) -19)) +(randomx / (d_swid-sax) * (d_shat-say))+10;
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();
@@ -85,8 +92,8 @@
         //右側
         for (let i = 0; i < 20 - random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (swid - 49)) + 30;
-            var randomy = Math.floor(Math.random() * ((randomx / swid * shat) - 14)) + 10;
+            var randomx = Math.floor(Math.random() * (d_swid - (2*sax) -19)) + sax+10; //　最大値 d_swid-sax-10　最小値 sax+10
+            var randomy = Math.floor(Math.random() * ((randomx / (d_swid-sax) * (d_shat-say)) -say - 19)) + say+10; //最大値　d-shat-say-10 最小値say+10
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();
@@ -97,12 +104,12 @@
     function drawCirc_right(canvas) {
         var ctx = canvas.getContext('2d');
         ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(swid, shat);  // 線の終了座標
+        ctx.moveTo(sax, say);
+        ctx.lineTo(d_swid, d_shat);  // 線の終了座標
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.rect(0, 0, swid, shat);
+        ctx.rect(sax, say, d_swid-sax, d_shat-say);
         ctx.lineWidth = 4;
         ctx.stroke();
 
@@ -110,8 +117,8 @@
         //右側
         for (let i = 0; i < random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (swid - 49)) + 30;
-            var randomy = Math.floor(Math.random() * ((randomx / swid * shat) - 14)) + 10;
+            var randomx = Math.floor(Math.random() * (d_swid - (2*sax) -19)) + sax+10; //　最大値 d_swid-sax-10　最小値 sax+10
+            var randomy = Math.floor(Math.random() * ((randomx / (d_swid-sax) * (d_shat-say)) -say - 19)) + say+10; //最大値　d-shat-say-10 最小値say+10
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();
@@ -120,8 +127,8 @@
         //左側
         for (let i = 0; i < 20 - random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (swid - 49)) + 30;
-            var randomy = Math.floor(Math.random() * (shat - 10 - (randomx / swid * shat + 5) + 1)) + randomx / swid * shat + 5;
+            var randomx = Math.floor(Math.random() * (d_swid - (2*sax) -19)) + sax+10; //width - 20 -20 + 1
+            var randomy = Math.floor(Math.random() * (d_shat - say - (randomx / (d_swid-sax) * (d_shat-say)) -19)) +(randomx / (d_swid-sax) * (d_shat-say))+10;
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();
@@ -134,22 +141,26 @@
 
         //斜線
         ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(swid, shat);  // 線の終了座標
+        ctx.moveTo(sax, say);
+        ctx.lineTo(d_swid, d_shat);  // 線の終了座標
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.rect(0, 0, swid, shat);
+        ctx.rect(sax, say, d_swid-sax, d_shat-say);
         ctx.lineWidth = 4;
         ctx.stroke();
+
+        ctx.font = 'normal 16pt "メイリオ"'
+        ctx.fillText('左側が多い', sax-110, shat/2)
+        ctx.fillText('Fキー', sax-110, shat/2+20)
 
         var random = Math.floor(Math.random() * 3) + 9; //最大値11、最小値9　11-9+1=3
        
         //右側
         for (let i = 0; i < random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (swid - 49)) + 30;
-            var randomy = Math.floor(Math.random() * ((randomx / swid * shat) - 14)) + 10;
+            var randomx = Math.floor(Math.random() * (d_swid - (2*sax) -19)) + sax+10; //　最大値 d_swid-sax-10　最小値 sax+10
+            var randomy = Math.floor(Math.random() * ((randomx / (d_swid-sax) * (d_shat-say)) -say - 19)) + say+10; //最大値　d-shat-say-10 最小値say+10
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();
@@ -158,8 +169,8 @@
         //左側
         for (let i = 0; i < 20 - random; i++) {
             ctx.beginPath();
-            var randomx = Math.floor(Math.random() * (swid - 49)) + 30; //width - 20 -20 + 1
-            var randomy = Math.floor(Math.random() * (shat - 10 - (randomx / swid * shat + 5) + 1)) + randomx / swid * shat + 5;
+            var randomx = Math.floor(Math.random() * (d_swid - (2*sax) -19)) + sax+10; //width - 20 -20 + 1
+            var randomy = Math.floor(Math.random() * (d_shat - say - (randomx / (d_swid-sax) * (d_shat-say)) -19)) +(randomx / (d_swid-sax) * (d_shat-say))+10;
             ctx.arc(randomx, randomy, 10, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(255,0,0)";
             ctx.fill();

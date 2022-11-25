@@ -333,7 +333,7 @@ jsPsych.plugins["rdk"] = (function() {
 		
 		//Fixation Cross Parameters
 		var fixationCross = trial.fixation_cross; //To display or not to display the cross
-		var fixationCrossWidth = trial.fixation_cross_width;  //The width of the fixation cross in pixels
+		var fixationCrosd_swidth = trial.fixation_cross_width;  //The width of the fixation cross in pixels
 		var fixationCrossHeight = trial.fixation_cross_height; //The height of the fixation cross in pixels
 		var fixationCrossColor = trial.fixation_cross_color; //The color of the fixation cross
 		var fixationCrossThickness = trial.fixation_cross_thickness; //The thickness of the fixation cross, must be positive number above 1
@@ -381,7 +381,7 @@ jsPsych.plugins["rdk"] = (function() {
 		var ctx = canvas.getContext("2d");
 
 		//Declare variables for width and height, and also set the canvas width and height to the window width and height
-		var canvasWidth = canvas.width = window.innerWidth;
+		var canvad_swidth = canvas.width = window.innerWidth;
 		var canvasHeight = canvas.height = window.innerHeight;
 
 		//Set the canvas background color
@@ -558,7 +558,7 @@ jsPsych.plugins["rdk"] = (function() {
 				border: trial.border,
 				border_thickness: trial.border_thickness,
 				border_color: trial.border_color,
-				canvas_width: canvasWidth,
+				canvas_width: canvad_swidth,
 				canvas_height: canvasHeight	
 			}
 			
@@ -648,7 +648,7 @@ jsPsych.plugins["rdk"] = (function() {
 			apertureTypeArray = setParameter(apertureType);
 			reinsertTypeArray = setParameter(reinsertType);
 			fixationCrossArray = setParameter(fixationCross);
-			fixationCrossWidthArray = setParameter(fixationCrossWidth);
+			fixationCrosd_swidthArray = setParameter(fixationCrosd_swidth);
 			fixationCrossHeightArray = setParameter(fixationCrossHeight);
 			fixationCrossColorArray = setParameter(fixationCrossColor);
 			fixationCrossThicknessArray = setParameter(fixationCrossThickness);
@@ -718,7 +718,7 @@ jsPsych.plugins["rdk"] = (function() {
 			apertureType = apertureTypeArray[currentApertureNumber];
 			reinsertType = reinsertTypeArray[currentApertureNumber];
 			fixationCross = fixationCrossArray[currentApertureNumber];
-			fixationCrossWidth = fixationCrossWidthArray[currentApertureNumber];
+			fixationCrosd_swidth = fixationCrosd_swidthArray[currentApertureNumber];
 			fixationCrossHeight = fixationCrossHeightArray[currentApertureNumber];
 			fixationCrossColor = fixationCrossColorArray[currentApertureNumber];
 			fixationCrossThickness = fixationCrossThicknessArray[currentApertureNumber];
@@ -956,16 +956,16 @@ jsPsych.plugins["rdk"] = (function() {
 		    	//Horizontal line
 		    	ctx.beginPath();
 		    	ctx.lineWidth = fixationCrossThickness;
-		    	ctx.moveTo(canvasWidth/2 - fixationCrossWidth, canvasHeight/2);
-		    	ctx.lineTo(canvasWidth/2 + fixationCrossWidth, canvasHeight/2);
+		    	ctx.moveTo(canvad_swidth/2 - fixationCrosd_swidth, canvasHeight/2);
+		    	ctx.lineTo(canvad_swidth/2 + fixationCrosd_swidth, canvasHeight/2);
 		    	ctx.strokeStyle = fixationCrossColor;
 		    	ctx.stroke();
 		    	
 		    	//Vertical line
 		    	ctx.beginPath();
 		    	ctx.lineWidth = fixationCrossThickness;
-		    	ctx.moveTo(canvasWidth/2, canvasHeight/2 - fixationCrossHeight);
-		    	ctx.lineTo(canvasWidth/2, canvasHeight/2 + fixationCrossHeight);
+		    	ctx.moveTo(canvad_swidth/2, canvasHeight/2 - fixationCrossHeight);
+		    	ctx.lineTo(canvad_swidth/2, canvasHeight/2 + fixationCrossHeight);
 		    	ctx.strokeStyle = fixationCrossColor;
 		    	ctx.stroke();
 		    }
