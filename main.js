@@ -69,10 +69,10 @@ function drawCirc_left(canvas) {
     ctx.stroke();
 
     ctx.font = 'normal 16pt "メイリオ"'
-    ctx.fillText('左側が多い', sax - 110, shat / 2)
-    ctx.fillText('Fキー', sax - 110, shat / 2 + 20)
+    ctx.fillText('左側が多い', sax - 130, shat / 2)
+    ctx.fillText('Fキー(0.5円)', sax - 130, shat / 2 + 20)
     ctx.fillText('右側が多い', d_swid + 5, shat / 2)
-    ctx.fillText('Jキー', d_swid + 5, shat / 2 + 20)
+    ctx.fillText('Jキー(5円)', d_swid + 5, shat / 2 + 20)
 
     nab = shikou.toString();
     text = nab + kaime;
@@ -115,10 +115,10 @@ function drawCirc_right(canvas) {
     ctx.stroke();
 
     ctx.font = 'normal 16pt "メイリオ"'
-    ctx.fillText('左側が多い', sax - 110, shat / 2)
-    ctx.fillText('Fキー', sax - 110, shat / 2 + 20)
+    ctx.fillText('左側が多い', sax - 130, shat / 2)
+    ctx.fillText('Fキー(0.5円)', sax - 130, shat / 2 + 20)
     ctx.fillText('右側が多い', d_swid + 5, shat / 2)
-    ctx.fillText('Jキー', d_swid + 5, shat / 2 + 20)
+    ctx.fillText('Jキー(5円)', d_swid + 5, shat / 2 + 20)
 
     nab = shikou.toString();
     text = nab + kaime;
@@ -163,10 +163,10 @@ function drawCirc_ambiguous(canvas) {
     ctx.stroke();
 
     ctx.font = 'normal 16pt "メイリオ"'
-    ctx.fillText('左側が多い', sax - 110, shat / 2)
-    ctx.fillText('Fキー', sax - 110, shat / 2 + 20)
+    ctx.fillText('左側が多い', sax - 130, shat / 2)
+    ctx.fillText('Fキー(0.5円)', sax - 130, shat / 2 + 20)
     ctx.fillText('右側が多い', d_swid + 5, shat / 2)
-    ctx.fillText('Jキー', d_swid + 5, shat / 2 + 20)
+    ctx.fillText('Jキー(5円)', d_swid + 5, shat / 2 + 20)
     nab = shikou.toString();
     text = nab + kaime;
     ctx.fillText(text, d_swid + 5, say)
