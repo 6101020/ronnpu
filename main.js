@@ -176,7 +176,7 @@ function drawCirc_ambiguous(canvas) {
     var random = Math.floor(Math.random() * 3) + 9; //最大値11、最小値9　11-9+1=3
 
     //右側
-    for (let i = 0; i < random; i++) {
+    for (let i = 0; i < 20 - random; i++) {
         ctx.beginPath();
         var randomx = Math.floor(Math.random() * (d_swid - (2 * sax) - 19)) + sax + 10; //　最大値 d_swid-sax-10　最小値 sax+10
         var randomy = Math.floor(Math.random() * ((randomx / (d_swid - sax) * (d_shat - say)) - say - 19)) + say + 10; //最大値　d-shat-say-10 最小値say+10
@@ -186,7 +186,7 @@ function drawCirc_ambiguous(canvas) {
     }
 
     //左側
-    for (let i = 0; i < 20 - random; i++) {
+    for (let i = 0; i < random; i++) {
         ctx.beginPath();
         var randomx = Math.floor(Math.random() * (d_swid - (2 * sax) - 19)) + sax + 10; //width - 20 -20 + 1
         var randomy = Math.floor(Math.random() * (d_shat - say - (randomx / (d_swid - sax) * (d_shat - say)) - 19)) + (randomx / (d_swid - sax) * (d_shat - say)) + 10;
